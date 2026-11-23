@@ -25,6 +25,7 @@ Set options as console variables on the same line first, e.g. `TARGET="Bird"; RA
 | `03_head_rigid.py` | Makes the whole head move as one piece, blending into the body at the neck. Stops the muzzle crumpling when the head turns. |
 | `04_orphan_verts_and_reset.py` | Assigns any unweighted points (e.g. fingertips) to the nearest bone, then resets the pose. |
 | `05_limb_weights_and_smooth.py` | Sets arm and leg weights by position along each bone (soft shoulder, elbow, hip and knee), keeps the belly centre with the hips, then smooths all body weights (head excluded). |
+| `bee_shade.py` | Bee materials for the untextured Krea bee (one fused mesh, head at −X): yellow body with black stripes and stinger, glossy procedural eyes, black antennae, translucent wings. Parts are picked by position, as the mesh has no UVs. Headless from a GLB (`blender -b --factory-startup -P bee_shade.py -- bee.glb` adds lights and camera, renders 3 previews, saves `<name>_shaded.blend` next to the GLB, never overwrites) or from the console on the active object (materials only). |
 | `example_metaball_panda.py` | The first hand-built panda from metaballs. Reference only. |
 | `make_console_line.py` | Turns a script into a one-line `exec(...)` for the console. Runs on your PC with Python, not inside Blender. |
 
@@ -53,6 +54,11 @@ Test with a pose (raise an arm, turn the head, bend an elbow, splay the legs) an
 - It can inspect the scene, take preview renders, switch workspaces and move whole objects.
 - It can't run scripts or pose bones. Use the console for those.
 - Its `appId` changes whenever the file is reopened, so call `list_desktop_apps` again.
+
+**Running Blender headless (Microsoft Store install)**
+- Windows blocks running `blender.exe` from `WindowsApps` directly. Use the app alias `%LOCALAPPDATA%\Microsoft\WindowsApps\blender-launcher.exe` with the usual `-b -P script.py -- args`.
+- The alias doesn't pass Blender's printed output back, so have scripts write a log file.
+- A headless run is a separate Blender; it leaves the file open in your Blender alone.
 
 **Credits**
 - Get a quote (preflight) before every generation; quotes are free.
